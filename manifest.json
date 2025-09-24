@@ -1,0 +1,11 @@
+{
+	"id": "obsidian-basic-git-sync",
+	"name": "Basic git sync",
+	"version": "0.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Sync vault with git repo",
+	"author": "Maxi Capodacqua",
+	"authorUrl": "https://github.com/maxicapodacqua",
+	"fundingUrl": "https://github.com/maxicapodacqua",
+	"isDesktopOnly": true
+}
