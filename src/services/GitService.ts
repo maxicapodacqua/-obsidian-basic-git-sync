@@ -30,6 +30,26 @@ export default class GitService {
 		}
 	}
 
+	public async add(files: string | string[]) {
+		return await this.gitClient.add(files);
+	}
+
+	/**
+	 * Returns if there were changes committed
+	 */
+	public async commit(message: string | string[]): Promise<boolean> {
+		const res = await this.gitClient.commit(message);
+		return (res.summary.changes + res.summary.deletions + res.summary.insertions) > 0;
+	}
+
+	public async push() {
+		return await this.gitClient.push();
+	}
+
+	public async pull() {
+		return await this.gitClient.pull();
+	}
+
 	/** TODO: delete this function */
 	public _getGitClient() {
 		return this.gitClient;
