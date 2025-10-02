@@ -39,6 +39,7 @@ export default class BasicGitSyncPlugin extends Plugin {
 
 		// I'll go with a different approach, an interval with push and pull
 
+
 		this.registerInterval(window.setInterval(async () => {
 			await this.uploadChanges();
 			await this.downloadChanges();
@@ -89,28 +90,23 @@ export default class BasicGitSyncPlugin extends Plugin {
 
 	private async registerEvents() {
 		this.registerEvent(this.app.vault.on('modify', async (_file) => {
-			console.log("modify");
 			await this.uploadChanges();
 		}));
 
 		this.registerEvent(this.app.vault.on('create', async (_file) => {
-			console.log("create");
 			await this.uploadChanges();
 		}));
 
 		this.registerEvent(this.app.vault.on('delete', async (_file) => {
-			console.log("delete");
 			await this.uploadChanges();
 		}));
 
 		this.registerEvent(this.app.vault.on('rename', async (_file) => {
-			console.log("rename");
 			await this.uploadChanges();
 		}));
 
 
 		this.registerEvent(this.app.workspace.on('file-open', async (_file) => {
-			console.log("this.app.workspace.on('file-open',");
 			await this.downloadChanges();
 		}));
 
@@ -127,7 +123,6 @@ export default class BasicGitSyncPlugin extends Plugin {
 			'starting': 'soup',
 		};
 
-		console.log(`${this.pluginState} -> ${newState}`);
 		this.pluginState = newState;
 		this.statusBar.setText(`git: ${newState}`);
 		setIcon(this.statusBarIcon, statusIconMap[newState]);
